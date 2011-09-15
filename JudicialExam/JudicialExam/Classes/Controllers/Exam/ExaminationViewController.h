@@ -12,5 +12,6 @@
 @interface ExaminationViewController : UIViewController {
     
 }
+- (IBAction)startTest:(id)sender;
 
 @end

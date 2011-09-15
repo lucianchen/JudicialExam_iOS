@@ -20,8 +20,20 @@
 		C4BE63CF14218D1200B6ED2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63CD14218D1200B6ED2C /* InfoPlist.strings */; };
 		C4BE63D214218D1200B6ED2C /* JudicialExamTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */; };
 		C4BE63D414218D1200B6ED2C /* JudicialExamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */; };
-		C4BE63E3142193A700B6ED2C /* ExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63E1142193A700B6ED2C /* ExaminationViewController.m */; };
-		C4BE63E4142193A700B6ED2C /* ExaminationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63E2142193A700B6ED2C /* ExaminationViewController.xib */; };
+		C4BE64001421D9AA00B6ED2C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63FF1421D9AA00B6ED2C /* CoreData.framework */; };
+		C4BE64051421DC9A00B6ED2C /* JudicialExam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64031421DC9A00B6ED2C /* JudicialExam.xcdatamodeld */; };
+		C4BE64171421E6E400B6ED2C /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64161421E6E400B6ED2C /* Option.m */; };
+		C4BE641A1421E6E500B6ED2C /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64191421E6E500B6ED2C /* Record.m */; };
+		C4BE641D1421E6E500B6ED2C /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE641C1421E6E500B6ED2C /* Question.m */; };
+		C4BE64201421E6E500B6ED2C /* Paper.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE641F1421E6E500B6ED2C /* Paper.m */; };
+		C4BE64231421E6E500B6ED2C /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64221421E6E500B6ED2C /* Answer.m */; };
+		C4BE64271421EED500B6ED2C /* PaperMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64261421EED500B6ED2C /* PaperMaker.m */; };
+		C4BE64361421FC8B00B6ED2C /* ExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64301421FC8B00B6ED2C /* ExaminationViewController.m */; };
+		C4BE64371421FC8B00B6ED2C /* ExaminationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE64311421FC8B00B6ED2C /* ExaminationViewController.xib */; };
+		C4BE64381421FC8B00B6ED2C /* QuestionEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE64341421FC8B00B6ED2C /* QuestionEditViewController.m */; };
+		C4BE64391421FC8B00B6ED2C /* QuestionEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE64351421FC8B00B6ED2C /* QuestionEditViewController.xib */; };
+		C4BE643D1421FCA500B6ED2C /* QuestionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE643B1421FCA500B6ED2C /* QuestionListViewController.m */; };
+		C4BE643E1421FCA500B6ED2C /* QuestionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE643C1421FCA500B6ED2C /* QuestionListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +64,29 @@
 		C4BE63D014218D1200B6ED2C /* JudicialExamTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JudicialExamTests-Prefix.pch"; sourceTree = "<group>"; };
 		C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudicialExamTests.h; sourceTree = "<group>"; };
 		C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudicialExamTests.m; sourceTree = "<group>"; };
-		C4BE63E0142193A700B6ED2C /* ExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExaminationViewController.h; sourceTree = "<group>"; };
-		C4BE63E1142193A700B6ED2C /* ExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExaminationViewController.m; sourceTree = "<group>"; };
-		C4BE63E2142193A700B6ED2C /* ExaminationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExaminationViewController.xib; sourceTree = "<group>"; };
+		C4BE63FF1421D9AA00B6ED2C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C4BE64041421DC9A00B6ED2C /* JudicialExam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JudicialExam.xcdatamodel; sourceTree = "<group>"; };
+		C4BE64151421E6E400B6ED2C /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
+		C4BE64161421E6E400B6ED2C /* Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Option.m; sourceTree = "<group>"; };
+		C4BE64181421E6E500B6ED2C /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		C4BE64191421E6E500B6ED2C /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		C4BE641B1421E6E500B6ED2C /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		C4BE641C1421E6E500B6ED2C /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		C4BE641E1421E6E500B6ED2C /* Paper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paper.h; sourceTree = "<group>"; };
+		C4BE641F1421E6E500B6ED2C /* Paper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paper.m; sourceTree = "<group>"; };
+		C4BE64211421E6E500B6ED2C /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
+		C4BE64221421E6E500B6ED2C /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
+		C4BE64251421EED500B6ED2C /* PaperMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperMaker.h; sourceTree = "<group>"; };
+		C4BE64261421EED500B6ED2C /* PaperMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaperMaker.m; sourceTree = "<group>"; };
+		C4BE642F1421FC8B00B6ED2C /* ExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExaminationViewController.h; sourceTree = "<group>"; };
+		C4BE64301421FC8B00B6ED2C /* ExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExaminationViewController.m; sourceTree = "<group>"; };
+		C4BE64311421FC8B00B6ED2C /* ExaminationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExaminationViewController.xib; sourceTree = "<group>"; };
+		C4BE64331421FC8B00B6ED2C /* QuestionEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionEditViewController.h; sourceTree = "<group>"; };
+		C4BE64341421FC8B00B6ED2C /* QuestionEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionEditViewController.m; sourceTree = "<group>"; };
+		C4BE64351421FC8B00B6ED2C /* QuestionEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionEditViewController.xib; sourceTree = "<group>"; };
+		C4BE643A1421FCA500B6ED2C /* QuestionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionListViewController.h; sourceTree = "<group>"; };
+		C4BE643B1421FCA500B6ED2C /* QuestionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionListViewController.m; sourceTree = "<group>"; };
+		C4BE643C1421FCA500B6ED2C /* QuestionListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4BE64001421D9AA00B6ED2C /* CoreData.framework in Frameworks */,
 				C4BE639F14218D1200B6ED2C /* UIKit.framework in Frameworks */,
 				C4BE63A114218D1200B6ED2C /* Foundation.framework in Frameworks */,
 				C4BE63A314218D1200B6ED2C /* CoreGraphics.framework in Frameworks */,
@@ -84,6 +117,7 @@
 		C4BE638F14218D1200B6ED2C = {
 			isa = PBXGroup;
 			children = (
+				C4BE63FF1421D9AA00B6ED2C /* CoreData.framework */,
 				C4BE63A414218D1200B6ED2C /* JudicialExam */,
 				C4BE63CA14218D1200B6ED2C /* JudicialExamTests */,
 				C4BE639D14218D1200B6ED2C /* Frameworks */,
@@ -118,6 +152,7 @@
 				C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */,
 				C4BE63B014218D1200B6ED2C /* MainWindow.xib */,
 				C4BE63A514218D1200B6ED2C /* Supporting Files */,
+				C4BE64281421F01700B6ED2C /* Resources */,
 			);
 			path = JudicialExam;
 			sourceTree = "<group>";
@@ -156,6 +191,8 @@
 		C4BE63DE1421934100B6ED2C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C4BE64241421EEBC00B6ED2C /* Util */,
+				C4BE64021421DC6D00B6ED2C /* Model */,
 				C4BE63DF1421934100B6ED2C /* Controllers */,
 			);
 			path = Classes;
@@ -164,11 +201,67 @@
 		C4BE63DF1421934100B6ED2C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C4BE63E0142193A700B6ED2C /* ExaminationViewController.h */,
-				C4BE63E1142193A700B6ED2C /* ExaminationViewController.m */,
-				C4BE63E2142193A700B6ED2C /* ExaminationViewController.xib */,
+				C4BE642E1421FC8B00B6ED2C /* Exam */,
+				C4BE64321421FC8B00B6ED2C /* Questions */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C4BE64021421DC6D00B6ED2C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE64031421DC9A00B6ED2C /* JudicialExam.xcdatamodeld */,
+				C4BE64211421E6E500B6ED2C /* Answer.h */,
+				C4BE64221421E6E500B6ED2C /* Answer.m */,
+				C4BE641E1421E6E500B6ED2C /* Paper.h */,
+				C4BE641F1421E6E500B6ED2C /* Paper.m */,
+				C4BE641B1421E6E500B6ED2C /* Question.h */,
+				C4BE641C1421E6E500B6ED2C /* Question.m */,
+				C4BE64181421E6E500B6ED2C /* Record.h */,
+				C4BE64191421E6E500B6ED2C /* Record.m */,
+				C4BE64151421E6E400B6ED2C /* Option.h */,
+				C4BE64161421E6E400B6ED2C /* Option.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C4BE64241421EEBC00B6ED2C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE64251421EED500B6ED2C /* PaperMaker.h */,
+				C4BE64261421EED500B6ED2C /* PaperMaker.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		C4BE64281421F01700B6ED2C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C4BE642E1421FC8B00B6ED2C /* Exam */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE642F1421FC8B00B6ED2C /* ExaminationViewController.h */,
+				C4BE64301421FC8B00B6ED2C /* ExaminationViewController.m */,
+				C4BE64311421FC8B00B6ED2C /* ExaminationViewController.xib */,
+			);
+			path = Exam;
+			sourceTree = "<group>";
+		};
+		C4BE64321421FC8B00B6ED2C /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE64331421FC8B00B6ED2C /* QuestionEditViewController.h */,
+				C4BE64341421FC8B00B6ED2C /* QuestionEditViewController.m */,
+				C4BE64351421FC8B00B6ED2C /* QuestionEditViewController.xib */,
+				C4BE643A1421FCA500B6ED2C /* QuestionListViewController.h */,
+				C4BE643B1421FCA500B6ED2C /* QuestionListViewController.m */,
+				C4BE643C1421FCA500B6ED2C /* QuestionListViewController.xib */,
+			);
+			path = Questions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,7 +333,9 @@
 			files = (
 				C4BE63A914218D1200B6ED2C /* InfoPlist.strings in Resources */,
 				C4BE63B214218D1200B6ED2C /* MainWindow.xib in Resources */,
-				C4BE63E4142193A700B6ED2C /* ExaminationViewController.xib in Resources */,
+				C4BE64371421FC8B00B6ED2C /* ExaminationViewController.xib in Resources */,
+				C4BE64391421FC8B00B6ED2C /* QuestionEditViewController.xib in Resources */,
+				C4BE643E1421FCA500B6ED2C /* QuestionListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +373,16 @@
 			files = (
 				C4BE63AC14218D1200B6ED2C /* main.m in Sources */,
 				C4BE63AF14218D1200B6ED2C /* JudicialExamAppDelegate.m in Sources */,
-				C4BE63E3142193A700B6ED2C /* ExaminationViewController.m in Sources */,
+				C4BE64051421DC9A00B6ED2C /* JudicialExam.xcdatamodeld in Sources */,
+				C4BE64171421E6E400B6ED2C /* Option.m in Sources */,
+				C4BE641A1421E6E500B6ED2C /* Record.m in Sources */,
+				C4BE641D1421E6E500B6ED2C /* Question.m in Sources */,
+				C4BE64201421E6E500B6ED2C /* Paper.m in Sources */,
+				C4BE64231421E6E500B6ED2C /* Answer.m in Sources */,
+				C4BE64271421EED500B6ED2C /* PaperMaker.m in Sources */,
+				C4BE64361421FC8B00B6ED2C /* ExaminationViewController.m in Sources */,
+				C4BE64381421FC8B00B6ED2C /* QuestionEditViewController.m in Sources */,
+				C4BE643D1421FCA500B6ED2C /* QuestionListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +561,7 @@
 				C4BE63D914218D1200B6ED2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4BE63DA14218D1200B6ED2C /* Build configuration list for PBXNativeTarget "JudicialExamTests" */ = {
 			isa = XCConfigurationList;
@@ -465,8 +570,22 @@
 				C4BE63DC14218D1200B6ED2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C4BE64031421DC9A00B6ED2C /* JudicialExam.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C4BE64041421DC9A00B6ED2C /* JudicialExam.xcdatamodel */,
+			);
+			currentVersion = C4BE64041421DC9A00B6ED2C /* JudicialExam.xcdatamodel */;
+			path = JudicialExam.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C4BE639114218D1200B6ED2C /* Project object */;
 }

@@ -54,4 +54,7 @@
 	return YES;
 }
 
+- (IBAction)startTest:(id)sender {
+    
+}
 @end
