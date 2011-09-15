@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C4BE639F14218D1200B6ED2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE639E14218D1200B6ED2C /* UIKit.framework */; };
+		C4BE63A114218D1200B6ED2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63A014218D1200B6ED2C /* Foundation.framework */; };
+		C4BE63A314218D1200B6ED2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63A214218D1200B6ED2C /* CoreGraphics.framework */; };
+		C4BE63A914218D1200B6ED2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63A714218D1200B6ED2C /* InfoPlist.strings */; };
+		C4BE63AC14218D1200B6ED2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63AB14218D1200B6ED2C /* main.m */; };
+		C4BE63AF14218D1200B6ED2C /* JudicialExamAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */; };
+		C4BE63B214218D1200B6ED2C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63B014218D1200B6ED2C /* MainWindow.xib */; };
+		C4BE63B514218D1200B6ED2C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63B414218D1200B6ED2C /* FirstViewController.m */; };
+		C4BE63B814218D1200B6ED2C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63B714218D1200B6ED2C /* SecondViewController.m */; };
+		C4BE63BB14218D1200B6ED2C /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63B914218D1200B6ED2C /* FirstView.xib */; };
+		C4BE63BE14218D1200B6ED2C /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63BC14218D1200B6ED2C /* SecondView.xib */; };
+		C4BE63C514218D1200B6ED2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE639E14218D1200B6ED2C /* UIKit.framework */; };
+		C4BE63C614218D1200B6ED2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63A014218D1200B6ED2C /* Foundation.framework */; };
+		C4BE63C714218D1200B6ED2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63A214218D1200B6ED2C /* CoreGraphics.framework */; };
+		C4BE63CF14218D1200B6ED2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63CD14218D1200B6ED2C /* InfoPlist.strings */; };
+		C4BE63D214218D1200B6ED2C /* JudicialExamTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */; };
+		C4BE63D414218D1200B6ED2C /* JudicialExamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4BE63C814218D1200B6ED2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4BE639114218D1200B6ED2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4BE639914218D1200B6ED2C;
+			remoteInfo = JudicialExam;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C4BE639A14218D1200B6ED2C /* JudicialExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JudicialExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BE639E14218D1200B6ED2C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C4BE63A014218D1200B6ED2C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C4BE63A214218D1200B6ED2C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C4BE63A614218D1200B6ED2C /* JudicialExam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JudicialExam-Info.plist"; sourceTree = "<group>"; };
+		C4BE63A814218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4BE63AA14218D1200B6ED2C /* JudicialExam-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JudicialExam-Prefix.pch"; sourceTree = "<group>"; };
+		C4BE63AB14218D1200B6ED2C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C4BE63AD14218D1200B6ED2C /* JudicialExamAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudicialExamAppDelegate.h; sourceTree = "<group>"; };
+		C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudicialExamAppDelegate.m; sourceTree = "<group>"; };
+		C4BE63B114218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		C4BE63B314218D1200B6ED2C /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		C4BE63B414218D1200B6ED2C /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		C4BE63B614218D1200B6ED2C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		C4BE63B714218D1200B6ED2C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		C4BE63BA14218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
+		C4BE63BD14218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
+		C4BE63C414218D1200B6ED2C /* JudicialExamTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JudicialExamTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BE63CC14218D1200B6ED2C /* JudicialExamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JudicialExamTests-Info.plist"; sourceTree = "<group>"; };
+		C4BE63CE14218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4BE63D014218D1200B6ED2C /* JudicialExamTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JudicialExamTests-Prefix.pch"; sourceTree = "<group>"; };
+		C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudicialExamTests.h; sourceTree = "<group>"; };
+		C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudicialExamTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4BE639714218D1200B6ED2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE639F14218D1200B6ED2C /* UIKit.framework in Frameworks */,
+				C4BE63A114218D1200B6ED2C /* Foundation.framework in Frameworks */,
+				C4BE63A314218D1200B6ED2C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BE63C014218D1200B6ED2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE63C514218D1200B6ED2C /* UIKit.framework in Frameworks */,
+				C4BE63C614218D1200B6ED2C /* Foundation.framework in Frameworks */,
+				C4BE63C714218D1200B6ED2C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C4BE638F14218D1200B6ED2C = {
+			isa = PBXGroup;
+			children = (
+				C4BE63A414218D1200B6ED2C /* JudicialExam */,
+				C4BE63CA14218D1200B6ED2C /* JudicialExamTests */,
+				C4BE639D14218D1200B6ED2C /* Frameworks */,
+				C4BE639B14218D1200B6ED2C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C4BE639B14218D1200B6ED2C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE639A14218D1200B6ED2C /* JudicialExam.app */,
+				C4BE63C414218D1200B6ED2C /* JudicialExamTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4BE639D14218D1200B6ED2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE639E14218D1200B6ED2C /* UIKit.framework */,
+				C4BE63A014218D1200B6ED2C /* Foundation.framework */,
+				C4BE63A214218D1200B6ED2C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4BE63A414218D1200B6ED2C /* JudicialExam */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE63AD14218D1200B6ED2C /* JudicialExamAppDelegate.h */,
+				C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */,
+				C4BE63B014218D1200B6ED2C /* MainWindow.xib */,
+				C4BE63B314218D1200B6ED2C /* FirstViewController.h */,
+				C4BE63B414218D1200B6ED2C /* FirstViewController.m */,
+				C4BE63B614218D1200B6ED2C /* SecondViewController.h */,
+				C4BE63B714218D1200B6ED2C /* SecondViewController.m */,
+				C4BE63B914218D1200B6ED2C /* FirstView.xib */,
+				C4BE63BC14218D1200B6ED2C /* SecondView.xib */,
+				C4BE63A514218D1200B6ED2C /* Supporting Files */,
+			);
+			path = JudicialExam;
+			sourceTree = "<group>";
+		};
+		C4BE63A514218D1200B6ED2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE63A614218D1200B6ED2C /* JudicialExam-Info.plist */,
+				C4BE63A714218D1200B6ED2C /* InfoPlist.strings */,
+				C4BE63AA14218D1200B6ED2C /* JudicialExam-Prefix.pch */,
+				C4BE63AB14218D1200B6ED2C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4BE63CA14218D1200B6ED2C /* JudicialExamTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */,
+				C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */,
+				C4BE63CB14218D1200B6ED2C /* Supporting Files */,
+			);
+			path = JudicialExamTests;
+			sourceTree = "<group>";
+		};
+		C4BE63CB14218D1200B6ED2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE63CC14218D1200B6ED2C /* JudicialExamTests-Info.plist */,
+				C4BE63CD14218D1200B6ED2C /* InfoPlist.strings */,
+				C4BE63D014218D1200B6ED2C /* JudicialExamTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4BE639914218D1200B6ED2C /* JudicialExam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4BE63D714218D1200B6ED2C /* Build configuration list for PBXNativeTarget "JudicialExam" */;
+			buildPhases = (
+				C4BE639614218D1200B6ED2C /* Sources */,
+				C4BE639714218D1200B6ED2C /* Frameworks */,
+				C4BE639814218D1200B6ED2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JudicialExam;
+			productName = JudicialExam;
+			productReference = C4BE639A14218D1200B6ED2C /* JudicialExam.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4BE63C314218D1200B6ED2C /* JudicialExamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4BE63DA14218D1200B6ED2C /* Build configuration list for PBXNativeTarget "JudicialExamTests" */;
+			buildPhases = (
+				C4BE63BF14218D1200B6ED2C /* Sources */,
+				C4BE63C014218D1200B6ED2C /* Frameworks */,
+				C4BE63C114218D1200B6ED2C /* Resources */,
+				C4BE63C214218D1200B6ED2C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4BE63C914218D1200B6ED2C /* PBXTargetDependency */,
+			);
+			name = JudicialExamTests;
+			productName = JudicialExamTests;
+			productReference = C4BE63C414218D1200B6ED2C /* JudicialExamTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4BE639114218D1200B6ED2C /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C4BE639414218D1200B6ED2C /* Build configuration list for PBXProject "JudicialExam" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C4BE638F14218D1200B6ED2C;
+			productRefGroup = C4BE639B14218D1200B6ED2C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4BE639914218D1200B6ED2C /* JudicialExam */,
+				C4BE63C314218D1200B6ED2C /* JudicialExamTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4BE639814218D1200B6ED2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE63A914218D1200B6ED2C /* InfoPlist.strings in Resources */,
+				C4BE63B214218D1200B6ED2C /* MainWindow.xib in Resources */,
+				C4BE63BB14218D1200B6ED2C /* FirstView.xib in Resources */,
+				C4BE63BE14218D1200B6ED2C /* SecondView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BE63C114218D1200B6ED2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE63CF14218D1200B6ED2C /* InfoPlist.strings in Resources */,
+				C4BE63D214218D1200B6ED2C /* JudicialExamTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4BE63C214218D1200B6ED2C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4BE639614218D1200B6ED2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE63AC14218D1200B6ED2C /* main.m in Sources */,
+				C4BE63AF14218D1200B6ED2C /* JudicialExamAppDelegate.m in Sources */,
+				C4BE63B514218D1200B6ED2C /* FirstViewController.m in Sources */,
+				C4BE63B814218D1200B6ED2C /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4BE63BF14218D1200B6ED2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE63D414218D1200B6ED2C /* JudicialExamTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4BE63C914218D1200B6ED2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4BE639914218D1200B6ED2C /* JudicialExam */;
+			targetProxy = C4BE63C814218D1200B6ED2C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C4BE63A714218D1200B6ED2C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4BE63A814218D1200B6ED2C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C4BE63B014218D1200B6ED2C /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4BE63B114218D1200B6ED2C /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		C4BE63B914218D1200B6ED2C /* FirstView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4BE63BA14218D1200B6ED2C /* en */,
+			);
+			name = FirstView.xib;
+			sourceTree = "<group>";
+		};
+		C4BE63BC14218D1200B6ED2C /* SecondView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4BE63BD14218D1200B6ED2C /* en */,
+			);
+			name = SecondView.xib;
+			sourceTree = "<group>";
+		};
+		C4BE63CD14218D1200B6ED2C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4BE63CE14218D1200B6ED2C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C4BE63D514218D1200B6ED2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		C4BE63D614218D1200B6ED2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		C4BE63D814218D1200B6ED2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JudicialExam/JudicialExam-Prefix.pch";
+				INFOPLIST_FILE = "JudicialExam/JudicialExam-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C4BE63D914218D1200B6ED2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JudicialExam/JudicialExam-Prefix.pch";
+				INFOPLIST_FILE = "JudicialExam/JudicialExam-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C4BE63DB14218D1200B6ED2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JudicialExam.app/JudicialExam";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JudicialExamTests/JudicialExamTests-Prefix.pch";
+				INFOPLIST_FILE = "JudicialExamTests/JudicialExamTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C4BE63DC14218D1200B6ED2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JudicialExam.app/JudicialExam";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JudicialExamTests/JudicialExamTests-Prefix.pch";
+				INFOPLIST_FILE = "JudicialExamTests/JudicialExamTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4BE639414218D1200B6ED2C /* Build configuration list for PBXProject "JudicialExam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4BE63D514218D1200B6ED2C /* Debug */,
+				C4BE63D614218D1200B6ED2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4BE63D714218D1200B6ED2C /* Build configuration list for PBXNativeTarget "JudicialExam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4BE63D814218D1200B6ED2C /* Debug */,
+				C4BE63D914218D1200B6ED2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C4BE63DA14218D1200B6ED2C /* Build configuration list for PBXNativeTarget "JudicialExamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4BE63DB14218D1200B6ED2C /* Debug */,
+				C4BE63DC14218D1200B6ED2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4BE639114218D1200B6ED2C /* Project object */;
+}
