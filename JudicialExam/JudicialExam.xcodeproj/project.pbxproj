@@ -14,16 +14,14 @@
 		C4BE63AC14218D1200B6ED2C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63AB14218D1200B6ED2C /* main.m */; };
 		C4BE63AF14218D1200B6ED2C /* JudicialExamAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */; };
 		C4BE63B214218D1200B6ED2C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63B014218D1200B6ED2C /* MainWindow.xib */; };
-		C4BE63B514218D1200B6ED2C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63B414218D1200B6ED2C /* FirstViewController.m */; };
-		C4BE63B814218D1200B6ED2C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63B714218D1200B6ED2C /* SecondViewController.m */; };
-		C4BE63BB14218D1200B6ED2C /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63B914218D1200B6ED2C /* FirstView.xib */; };
-		C4BE63BE14218D1200B6ED2C /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63BC14218D1200B6ED2C /* SecondView.xib */; };
 		C4BE63C514218D1200B6ED2C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE639E14218D1200B6ED2C /* UIKit.framework */; };
 		C4BE63C614218D1200B6ED2C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63A014218D1200B6ED2C /* Foundation.framework */; };
 		C4BE63C714218D1200B6ED2C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE63A214218D1200B6ED2C /* CoreGraphics.framework */; };
 		C4BE63CF14218D1200B6ED2C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63CD14218D1200B6ED2C /* InfoPlist.strings */; };
 		C4BE63D214218D1200B6ED2C /* JudicialExamTests.h in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */; };
 		C4BE63D414218D1200B6ED2C /* JudicialExamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */; };
+		C4BE63E3142193A700B6ED2C /* ExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BE63E1142193A700B6ED2C /* ExaminationViewController.m */; };
+		C4BE63E4142193A700B6ED2C /* ExaminationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE63E2142193A700B6ED2C /* ExaminationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,18 +46,15 @@
 		C4BE63AD14218D1200B6ED2C /* JudicialExamAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudicialExamAppDelegate.h; sourceTree = "<group>"; };
 		C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudicialExamAppDelegate.m; sourceTree = "<group>"; };
 		C4BE63B114218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		C4BE63B314218D1200B6ED2C /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		C4BE63B414218D1200B6ED2C /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		C4BE63B614218D1200B6ED2C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		C4BE63B714218D1200B6ED2C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		C4BE63BA14218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
-		C4BE63BD14218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
 		C4BE63C414218D1200B6ED2C /* JudicialExamTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JudicialExamTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE63CC14218D1200B6ED2C /* JudicialExamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JudicialExamTests-Info.plist"; sourceTree = "<group>"; };
 		C4BE63CE14218D1200B6ED2C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4BE63D014218D1200B6ED2C /* JudicialExamTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JudicialExamTests-Prefix.pch"; sourceTree = "<group>"; };
 		C4BE63D114218D1200B6ED2C /* JudicialExamTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudicialExamTests.h; sourceTree = "<group>"; };
 		C4BE63D314218D1200B6ED2C /* JudicialExamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudicialExamTests.m; sourceTree = "<group>"; };
+		C4BE63E0142193A700B6ED2C /* ExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExaminationViewController.h; sourceTree = "<group>"; };
+		C4BE63E1142193A700B6ED2C /* ExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExaminationViewController.m; sourceTree = "<group>"; };
+		C4BE63E2142193A700B6ED2C /* ExaminationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExaminationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,15 +113,10 @@
 		C4BE63A414218D1200B6ED2C /* JudicialExam */ = {
 			isa = PBXGroup;
 			children = (
+				C4BE63DE1421934100B6ED2C /* Classes */,
 				C4BE63AD14218D1200B6ED2C /* JudicialExamAppDelegate.h */,
 				C4BE63AE14218D1200B6ED2C /* JudicialExamAppDelegate.m */,
 				C4BE63B014218D1200B6ED2C /* MainWindow.xib */,
-				C4BE63B314218D1200B6ED2C /* FirstViewController.h */,
-				C4BE63B414218D1200B6ED2C /* FirstViewController.m */,
-				C4BE63B614218D1200B6ED2C /* SecondViewController.h */,
-				C4BE63B714218D1200B6ED2C /* SecondViewController.m */,
-				C4BE63B914218D1200B6ED2C /* FirstView.xib */,
-				C4BE63BC14218D1200B6ED2C /* SecondView.xib */,
 				C4BE63A514218D1200B6ED2C /* Supporting Files */,
 			);
 			path = JudicialExam;
@@ -161,6 +151,24 @@
 				C4BE63D014218D1200B6ED2C /* JudicialExamTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4BE63DE1421934100B6ED2C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE63DF1421934100B6ED2C /* Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C4BE63DF1421934100B6ED2C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C4BE63E0142193A700B6ED2C /* ExaminationViewController.h */,
+				C4BE63E1142193A700B6ED2C /* ExaminationViewController.m */,
+				C4BE63E2142193A700B6ED2C /* ExaminationViewController.xib */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +240,7 @@
 			files = (
 				C4BE63A914218D1200B6ED2C /* InfoPlist.strings in Resources */,
 				C4BE63B214218D1200B6ED2C /* MainWindow.xib in Resources */,
-				C4BE63BB14218D1200B6ED2C /* FirstView.xib in Resources */,
-				C4BE63BE14218D1200B6ED2C /* SecondView.xib in Resources */,
+				C4BE63E4142193A700B6ED2C /* ExaminationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,8 +278,7 @@
 			files = (
 				C4BE63AC14218D1200B6ED2C /* main.m in Sources */,
 				C4BE63AF14218D1200B6ED2C /* JudicialExamAppDelegate.m in Sources */,
-				C4BE63B514218D1200B6ED2C /* FirstViewController.m in Sources */,
-				C4BE63B814218D1200B6ED2C /* SecondViewController.m in Sources */,
+				C4BE63E3142193A700B6ED2C /* ExaminationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,22 +315,6 @@
 				C4BE63B114218D1200B6ED2C /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		C4BE63B914218D1200B6ED2C /* FirstView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C4BE63BA14218D1200B6ED2C /* en */,
-			);
-			name = FirstView.xib;
-			sourceTree = "<group>";
-		};
-		C4BE63BC14218D1200B6ED2C /* SecondView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C4BE63BD14218D1200B6ED2C /* en */,
-			);
-			name = SecondView.xib;
 			sourceTree = "<group>";
 		};
 		C4BE63CD14218D1200B6ED2C /* InfoPlist.strings */ = {

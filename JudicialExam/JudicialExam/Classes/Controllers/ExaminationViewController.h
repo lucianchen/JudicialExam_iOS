@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  ExaminationViewController.h
 //  JudicialExam
 //
 //  Created by Chen Liang on 9/15/11.
@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FirstViewController : UIViewController {
-
+@interface ExaminationViewController : UIViewController {
+    
 }
 
 @end
