@@ -128,8 +128,13 @@
 	
 	NSFileManager *currentManager = [NSFileManager defaultManager];
 	if (![currentManager fileExistsAtPath:[storeUrl path]]) {
-		[currentManager copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"eventApp" ofType:@"sqlite"] 
-								toPath:[storeUrl path] error:&error];
+        NSString *orgPath = [[NSBundle mainBundle] pathForResource:@"judicialExam" ofType:@"sqlite"];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:orgPath]) {
+            [currentManager copyItemAtPath:orgPath
+                                    toPath:[storeUrl path] error:&error];
+        }
+		
 		//storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"eventApp.sqlite"]];
 	}
 	

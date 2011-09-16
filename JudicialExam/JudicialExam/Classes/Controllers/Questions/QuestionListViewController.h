@@ -10,7 +10,11 @@
 
 
 @interface QuestionListViewController : UIViewController {
-    
+    NSFetchedResultsController *fetchedResultsController;
+    NSManagedObjectContext *addingManagedObjectContext;
+    UITableView *questionTableView;
 }
+
+@property (nonatomic, retain) IBOutlet UITableView *questionTableView;
 
 @end
