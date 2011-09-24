@@ -8,12 +8,18 @@
 
 #import "JudicialExamAppDelegate.h"
 
+@interface JudicialExamAppDelegate()
+
+@property(nonatomic, retain) NSPersistentStore *persistentStore;
+@end
+
 @implementation JudicialExamAppDelegate
 @synthesize managedObjectContext, managedObjectModel, persistentStoreCoordinator;
 
 @synthesize window=_window;
 
 @synthesize tabBarController=_tabBarController;
+@synthesize persistentStore;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -72,6 +78,8 @@
 	[persistentStoreCoordinator release];
 	[managedObjectContext release];
     
+    [persistentStore release];
+    
     [super dealloc];
 }
 
@@ -96,6 +104,24 @@
 	return [documentDirectory stringByAppendingPathComponent: @"judicialExam.sqlite"];
 }
 
+- (void)reCreateStore{
+    NSURL *storeUrl = [NSURL fileURLWithPath: [self sqliteFilePath]];
+    
+    NSError *error = nil;
+    
+    if (self.persistentStore) {
+        [self.persistentStoreCoordinator removePersistentStore:self.persistentStore error:&error];
+        if (error) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    
+    if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+}
 
 #pragma mark -
 #pragma mark coreData stack
@@ -149,7 +175,8 @@
     //NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 	
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error]) {
+    NSPersistentStore *newStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error];
+    if (!newStore) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -162,7 +189,9 @@
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }    
+    }else {
+        self.persistentStore = newStore;
+    }
     
     return persistentStoreCoordinator;
 }

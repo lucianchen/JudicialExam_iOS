@@ -2,7 +2,7 @@
 //  Option.h
 //  JudicialExam
 //
-//  Created by Chen Liang on 9/16/11.
+//  Created by Chen, Liang on 9/23/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 @interface Option : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * desc;
+@property (nonatomic, retain) NSNumber * Id;
 
 @end

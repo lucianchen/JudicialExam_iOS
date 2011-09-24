@@ -2,7 +2,7 @@
 //  Question.m
 //  JudicialExam
 //
-//  Created by Chen Liang on 9/16/11.
+//  Created by Chen, Liang on 9/23/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,41 +11,14 @@
 
 
 @implementation Question
-@dynamic id;
-@dynamic optionType;
-@dynamic title;
 @dynamic analysis;
+@dynamic Id;
+@dynamic optionType;
+@dynamic paperType;
+@dynamic subjectiveAnswer;
+@dynamic title;
 @dynamic year;
-@dynamic type;
+@dynamic answers;
 @dynamic options;
-
-- (void)addOptionsObject:(Option *)value {    
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"options" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey:@"options"] addObject:value];
-    [self didChangeValueForKey:@"options" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)removeOptionsObject:(Option *)value {
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"options" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey:@"options"] removeObject:value];
-    [self didChangeValueForKey:@"options" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)addOptions:(NSSet *)value {    
-    [self willChangeValueForKey:@"options" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-    [[self primitiveValueForKey:@"options"] unionSet:value];
-    [self didChangeValueForKey:@"options" withSetMutation:NSKeyValueUnionSetMutation usingObjects:value];
-}
-
-- (void)removeOptions:(NSSet *)value {
-    [self willChangeValueForKey:@"options" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-    [[self primitiveValueForKey:@"options"] minusSet:value];
-    [self didChangeValueForKey:@"options" withSetMutation:NSKeyValueMinusSetMutation usingObjects:value];
-}
-
 
 @end

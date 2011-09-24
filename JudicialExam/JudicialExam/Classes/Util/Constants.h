@@ -8,3 +8,13 @@
 
 //Entity names
 #define EntityNameQuestion @"Question"
+#define EntityNameOption @"Option"
+#define EntityNamePaper @"Paper"
+
+#define PaperYearStart (2002)
+#define PaperYearEnd (2010)
+
+
+#pragma mark - Notification Definition
+#define NotificationPageChanged @"NotificationPageChanged"
+

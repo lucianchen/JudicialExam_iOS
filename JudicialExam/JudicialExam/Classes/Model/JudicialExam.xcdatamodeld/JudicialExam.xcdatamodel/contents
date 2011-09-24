@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11B26" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Answer" representedClassName="Answer">
+        <attribute name="correct" optional="YES" attributeType="Boolean"/>
+        <attribute name="Id" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <relationship name="options" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Option" indexed="YES"/>
+        <relationship name="paper" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" indexed="YES"/>
+        <relationship name="question" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Question" indexed="YES"/>
+    </entity>
+    <entity name="Option" representedClassName="Option">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="Id" attributeType="Integer 32" defaultValueString="0" indexed="YES"/>
+    </entity>
+    <entity name="Paper" representedClassName="Paper">
+        <attribute name="Id" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="isOriginal" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="paperType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="year" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Question" indexed="YES"/>
+    </entity>
+    <entity name="Question" representedClassName="Question">
+        <attribute name="analysis" optional="YES" attributeType="String"/>
+        <attribute name="Id" attributeType="Integer 32" defaultValueString="0" indexed="YES"/>
+        <attribute name="optionType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="paperType" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="subjectiveAnswer" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="year" attributeType="Integer 32" defaultValueString="0"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Option" indexed="YES"/>
+        <relationship name="options" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Option" indexed="YES"/>
+    </entity>
+    <entity name="Record" representedClassName="Record">
+        <attribute name="date" optional="YES" attributeType="Date"/>
+        <attribute name="Id" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer"/>
+        <relationship name="paper" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" indexed="YES"/>
+    </entity>
+    <elements>
+        <element name="Answer" positionX="-414" positionY="-1809" width="128" height="120"/>
+        <element name="Option" positionX="-288" positionY="-1704" width="128" height="75"/>
+        <element name="Paper" positionX="-585" positionY="-1899" width="128" height="120"/>
+        <element name="Question" positionX="-621" positionY="-1713" width="128" height="180"/>
+        <element name="Record" positionX="-549" positionY="-2073" width="128" height="105"/>
+    </elements>
+</model>

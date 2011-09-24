@@ -20,14 +20,25 @@
     NSObject<QuestionEditViewControllerDelegate> *delegate;
     Question *question;
     UITextView *titleView;
-    UITableView *optionsTableView;
+    UITableView *tableView;
+    UITableViewCell *addOptionCell;
     UITextView *descView;
+    UITableViewCell *titleCell;
+    UITableViewCell *descCell;
+    UITableViewCell *tmpCell;
+    NSMutableArray *options;
 }
 
 @property(nonatomic, assign) NSObject<QuestionEditViewControllerDelegate> *delegate;
 @property(nonatomic, retain) Question *question;
 @property (nonatomic, retain) IBOutlet UITextView *titleView;
-@property (nonatomic, retain) IBOutlet UITableView *optionsTableView;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UITableViewCell *addOptionCell;
 @property (nonatomic, retain) IBOutlet UITextView *descView;
+@property (nonatomic, retain) IBOutlet UITableViewCell *titleCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *descCell;
+@property (nonatomic, assign) IBOutlet UITableViewCell *tmpCell;
+
+- (IBAction)addOption:(id)sender;
 
 @end

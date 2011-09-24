@@ -12,6 +12,7 @@
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    NSPersistentStore *persistentStore;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -21,5 +22,8 @@
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+- (NSString *)sqliteFilePath;
+- (void)reCreateStore;
 
 @end

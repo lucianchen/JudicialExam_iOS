@@ -16,7 +16,7 @@ typedef enum {
 }PaperType;
 
 typedef enum {
-    QuestionTypeOne,
+    QuestionTypeOne = 0,
     QuestionTypeTwo,
     QuestionTypeThree
 }QuestionType;

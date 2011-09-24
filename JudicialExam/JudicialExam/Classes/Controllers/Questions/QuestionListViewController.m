@@ -10,12 +10,16 @@
 #import "QuestionEditViewController.h"
 #import "Util.h"
 #import "Constants.h"
+#import "DataGenerationViewController.h"
+#import "QuestionListCell.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define kFetchListCacheName @"QuestionList"
 
 @interface QuestionListViewController()
 
 @property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSManagedObjectContext *addingManagedObjectContext;
 
 - (void)editList;
 - (void)addQuestion;
@@ -24,9 +28,11 @@
 @end
 
 @implementation QuestionListViewController
+@synthesize yearControl;
+@synthesize paperTypeControl;
 @synthesize questionTableView;
 @synthesize fetchedResultsController;
-@synthesize addingManagedObjectContext;
+@synthesize tmpCell;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,9 +46,10 @@
 - (void)dealloc
 {
     [fetchedResultsController release];
-    [addingManagedObjectContext release];
     
     [questionTableView release];
+    [yearControl release];
+    [paperTypeControl release];
     [super dealloc];
 }
 
@@ -60,11 +67,19 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-                                                                                           target:self 
-                                                                                           action:@selector(addQuestion)] autorelease];
+    //self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] 
+//                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+//                                                                                           target:self 
+//                                                                                           action:@selector(addQuestion)] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] 
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemAction 
+                                              target:self 
+                                              action:@selector(generateData:)] autorelease];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.yearControl.selectedSegmentIndex = 1;
+    self.paperTypeControl.selectedSegmentIndex = 1;
     
     NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
@@ -81,6 +96,9 @@
     [fetchedResultsController release];
     fetchedResultsController = nil;
     
+    [self setYearControl:nil];
+    [self setPaperTypeControl:nil];
+
     [super viewDidUnload];
 }
 
@@ -105,14 +123,34 @@
 	NSEntityDescription *entity = [NSEntityDescription entityForName:EntityNameQuestion inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
     
+    NSInteger selectedYear = self.yearControl.selectedSegmentIndex;
+    NSInteger selectedPaper = self.paperTypeControl.selectedSegmentIndex;
+    
+    NSPredicate *predicate = nil;
+    if (selectedYear > 0 && selectedPaper <= 0) {
+        predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"year", PaperYearStart + selectedYear - 1];
+    }else if (selectedPaper > 0 && selectedYear <= 0) {
+        predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"paperType", selectedPaper];
+    }else if (selectedYear > 0 && selectedPaper > 0) {
+        predicate = [NSPredicate predicateWithFormat:@"%K == %d AND %K == %d", @"year", PaperYearStart + selectedYear - 1, @"paperType", selectedPaper];
+    }
+    
+    if (predicate) {
+        [fetchRequest setPredicate:predicate];
+    }
+    
     // Create the sort descriptors array.
-	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-	NSArray *sortDescriptors = [NSArray arrayWithObjects:descriptor, nil];
+    NSSortDescriptor *descriptorYear = [[NSSortDescriptor alloc] initWithKey:@"year" ascending:YES];
+    NSSortDescriptor *descriptorPaper = [[NSSortDescriptor alloc] initWithKey:@"paperType" ascending:YES];
+	NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"Id" ascending:YES];
+	NSArray *sortDescriptors = [NSArray arrayWithObjects:descriptorYear,descriptorPaper, descriptor, nil];
 	[fetchRequest setSortDescriptors:sortDescriptors];
     [descriptor release];
+    [descriptorYear release];
+    [descriptorPaper release];
 	
 	// Create and initialize the fetch results controller.
-	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"QuestionList"];
+	NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 	fetchedResultsController = aFetchedResultsController;
 	fetchedResultsController.delegate = self;
 	
@@ -129,16 +167,13 @@
     
     controller.delegate = (NSObject<QuestionEditViewControllerDelegate>*)self;
     
-    NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
-	self.addingManagedObjectContext = addingContext;
-	[addingContext release];
-	
-	[addingManagedObjectContext setPersistentStoreCoordinator:[[self.fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
-    
-	controller.question = (Question*)[NSEntityDescription insertNewObjectForEntityForName:EntityNameQuestion inManagedObjectContext:addingContext];
+	controller.question = (Question*)[NSEntityDescription insertNewObjectForEntityForName:EntityNameQuestion inManagedObjectContext:self.managedObjectContext];
     
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:controller action:@selector(cancel)];
+    
     [self presentModalViewController:navController animated:YES];
 }
 
@@ -149,23 +184,22 @@
 #pragma mark - QuestionEditViewControllerDelegate
 - (void)didSubmitQuestion:(Question*)question{
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    [dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+    [dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext];
     
     NSError *error;
-    if (![addingManagedObjectContext save:&error]) {
+    if (![self.managedObjectContext save:&error]) {
         // Update to handle the error appropriately.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
-    [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+    [dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext];
     
-	self.addingManagedObjectContext = nil;
+    [self.questionTableView reloadData];
     [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didCancelSubmitting{
     
-    self.addingManagedObjectContext = nil;
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -196,11 +230,16 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
+    NSString *CellIdentifier = @"QuestionListCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        [[NSBundle mainBundle] loadNibNamed:@"QuestionListCell" owner:self options:nil];
+        cell = self.tmpCell;
+        self.tmpCell = nil;
+        
+        cell.layer.shouldRasterize = YES;
+        cell.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     }
     
     // Configure the cell.
@@ -212,7 +251,12 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     // Configure the cell to show the book's title
 	Question *question = [fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = question.title;
+	
+    QuestionListCell *listCell = (QuestionListCell*)cell;
+    listCell.questionText.text = question.title;
+    listCell.yearLabel.text = [NSString stringWithFormat:@"%@", question.year];
+    listCell.paperTypeLabel.text = [NSString stringWithFormat:@"卷%@", question.paperType];
+    listCell.questionIdLabel.text = [NSString stringWithFormat:@"%@.", question.Id];
 }
 
 
@@ -244,14 +288,17 @@
 #pragma mark Selection and moving
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-//    // Create and push a detail view controller.
-//	DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//    Book *selectedBook = (Book *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
-//    // Pass the selected book to the new view controller.
-//    detailViewController.book = selectedBook;
-//	[self.navigationController pushViewController:detailViewController animated:YES];
-//	[detailViewController release];
+    QuestionEditViewController *controller = [[[QuestionEditViewController alloc] init] autorelease];
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+    
+    controller.delegate = (NSObject<QuestionEditViewControllerDelegate>*)self;
+    
+    Question *question = [fetchedResultsController objectAtIndexPath:indexPath];
+	controller.question = question;
+    
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentModalViewController:navController animated:YES];
 }
 
 
@@ -320,4 +367,66 @@
     [super setEditing:editing animated:animated];
 }
 
+- (IBAction)generateData:(id)sender {
+    [fetchedResultsController release];
+    fetchedResultsController = nil;
+    [self.questionTableView reloadData];
+    
+    DataGenerationViewController *controller = [[[DataGenerationViewController alloc] init] autorelease];
+    
+    controller.delegate = (NSObject<DataGenerationViewControllerDelegate> *)self;
+    
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+    
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+- (IBAction)yearChanged:(id)sender {
+    [NSFetchedResultsController deleteCacheWithName:kFetchListCacheName];
+    [fetchedResultsController release];
+    fetchedResultsController = nil;
+    
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    
+    if (error) {
+        abort();
+    }
+    
+    [self.questionTableView reloadData];
+}
+
+- (IBAction)paperTypeChanged:(id)sender {
+    [NSFetchedResultsController deleteCacheWithName:kFetchListCacheName];
+    [fetchedResultsController release];
+    fetchedResultsController = nil;
+    
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    
+    if (error) {
+        abort();
+    }
+    
+    [self.questionTableView reloadData];
+}
+
+- (void)dataGenerationDone{
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        // Update to handle the error appropriately.
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        exit(-1);  // Fail
+    }
+    
+    
+    [self.fetchedResultsController performFetch:&error];
+    
+    [self.questionTableView reloadData];
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

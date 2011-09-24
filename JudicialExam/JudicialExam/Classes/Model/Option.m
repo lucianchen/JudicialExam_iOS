@@ -2,7 +2,7 @@
 //  Option.m
 //  JudicialExam
 //
-//  Created by Chen Liang on 9/16/11.
+//  Created by Chen, Liang on 9/23/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 
 @implementation Option
-@dynamic id;
 @dynamic desc;
+@dynamic Id;
 
 @end

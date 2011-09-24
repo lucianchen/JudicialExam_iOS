@@ -11,10 +11,19 @@
 
 @interface QuestionListViewController : UIViewController {
     NSFetchedResultsController *fetchedResultsController;
-    NSManagedObjectContext *addingManagedObjectContext;
     UITableView *questionTableView;
+    UISegmentedControl *yearControl;
+    UISegmentedControl *paperTypeControl;
+    UITableViewCell *tmpCell;
 }
 
+@property (nonatomic, retain) IBOutlet UISegmentedControl *yearControl;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *paperTypeControl;
 @property (nonatomic, retain) IBOutlet UITableView *questionTableView;
+@property (nonatomic, assign) IBOutlet UITableViewCell *tmpCell;
+
+- (IBAction)generateData:(id)sender;
+- (IBAction)yearChanged:(id)sender;
+- (IBAction)paperTypeChanged:(id)sender;
 
 @end

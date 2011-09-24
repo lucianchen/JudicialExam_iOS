@@ -7,7 +7,9 @@
 //
 
 #import "ExaminationViewController.h"
-
+#import "ExamPreConfigViewController.h"
+#import "PaperGenerator.h"
+#import "Util.h"
 
 @implementation ExaminationViewController
 
@@ -55,6 +57,28 @@
 }
 
 - (IBAction)startTest:(id)sender {
+    ExamPreConfigViewController *controller = [[[ExamPreConfigViewController alloc] init] autorelease];
+    controller.delegate = (NSObject<ExamPreConfigViewControllerDelegate>*)self;
     
+    controller.modalPresentationStyle = UIModalPresentationFormSheet;
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentModalViewController:controller animated:YES];
+}
+
+- (void)didEndConfiguration:(BOOL)shouldStart settings:(ExamPreSettings)settings{
+    if (shouldStart) {
+        PaperGenerator *paperGenerator = [[[PaperGenerator alloc] init] autorelease];
+        Paper *paper = [paperGenerator paperFromSettings:settings];
+        
+        NSManagedObjectContext *context = [Util managedObjectContext];
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 @end
