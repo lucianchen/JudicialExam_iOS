@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PaperQuestionView.h"
 #import "PaperPageSelector.h"
+#import "Paper.h"
+#import "Record.h"
 
 @interface PaperScrollViewController : UIViewController{
     UIScrollView *pagingScrollView;
@@ -20,11 +22,19 @@
     
     PaperQuestionView *tmpQuestionView;
     PaperPageSelector *pageSelector;
+    Paper *paper;
+    Record *record;
+    
+    UITableViewCell *tmpCell;
+    NSMutableDictionary *optionDict;
 }
 
 @property(nonatomic, retain) IBOutlet UIScrollView *pagingScrollView;
 @property(nonatomic, assign) IBOutlet PaperQuestionView *tmpQuestionView;
 @property(nonatomic, assign) PaperPageSelector *pageSelector;
-
+@property(nonatomic, assign) Paper *paper;
+@property(nonatomic, assign) Record *record;
+@property(nonatomic, assign) UITableViewCell *tmpCell;
+@property(nonatomic, readonly) NSMutableDictionary *optionDict;
 
 @end

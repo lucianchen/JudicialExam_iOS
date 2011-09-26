@@ -17,4 +17,12 @@
 @dynamic isOriginal;
 @dynamic questions;
 
+- (NSArray*)sortedQuestions{
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"optionType" ascending:YES];
+    NSArray *retval = [[self.questions allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:descriptor]];
+    [descriptor release];
+    
+    return retval;
+}
+
 @end

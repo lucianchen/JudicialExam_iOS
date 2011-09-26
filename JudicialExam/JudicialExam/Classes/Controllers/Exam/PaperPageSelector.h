@@ -18,6 +18,6 @@
 
 - (void)initPage:(NSInteger)page;
 - (void)addPageObserver:(NSObject *)observer selector:(SEL)selector;
-- (void)removePageObserver:(NSObject *)observer selector:(SEL)selector;
+- (void)removePageObserver:(NSObject *)observer;
 
 @end

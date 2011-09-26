@@ -15,17 +15,20 @@
 #define BookmarkImageNameReplacement @"icon_bookmark.png"
 #define BookmarkImageName @"icon_bookmark_plain.png"
 
+#define TimeRefreshInterval (1)
+
 @interface ExamPaperViewController()
+@property(nonatomic, retain) NSDate *dedlineTime;
 
 -(void) createPaperViews;
-- (void)setPageLabelNum:(NSInteger)pageNum;
-- (void)setCurrentPage:(NSInteger)page transition:(UIViewAnimationTransition)transition;
 - (void)layoutSnapViewThread;
 - (void)createGestureRecognizers:(id)target;
 - (IBAction)handleSingleTap:(UIGestureRecognizer *)sender;
 - (void)setupBookmarkIcons;
 - (void)updateBookmarkIcons;
 - (void)pageSelectionDidChange:(NSNotification*)notification;
+- (void)updateTime:(NSTimer*)theTimer;
+
 
 @end
 
@@ -40,8 +43,10 @@
 @synthesize bookmarkItem;
 @synthesize bookmarkItemPlain;
 @synthesize bookmarkItemReplacement;
+@synthesize timeItem;
 @synthesize gestureRecognizer;
 @synthesize answerItem;
+@synthesize dedlineTime;
 
 - (void)dealloc{
     [paper release];
@@ -60,6 +65,8 @@
     [scrollerViewController release];
     [pageSelector release];
     
+    [timeItem release];
+    [dedlineTime release];
     [super dealloc];
 }
 
@@ -77,6 +84,7 @@
 {
     [super viewDidLoad];
 
+    self.navigationController.navigationBarHidden = YES;
     pageLabel.layer.cornerRadius = 10;
 	//pageLabel.layer.shadowRadius = 5;
 	pageLabel.layer.masksToBounds = YES;
@@ -100,27 +108,39 @@
 	if (!scrollerViewController) {
         scrollerViewController = [[PaperScrollViewController alloc] init];
         scrollerViewController.pageSelector = pageSelector;
+        scrollerViewController.paper = self.paper;
     }
     
     if (!snapViewController) {
         snapViewController = [[PageSnapViewController alloc] init];
         snapViewController.pageSelector = pageSelector;
+        
     }
 
 	[self.view addSubview:scrollerViewController.view];
 	scrollerViewController.view.frame = self.view.bounds;
+    scrollerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 	//scrollerViewController.delegate = self;
 }
 
 - (void)viewDidUnload
 {
+    [self setTimeItem:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     [self createPaperViews];
+    [scrollerViewController viewWillAppear:animated];
+    
+    //Examing time: 3 hours
+    self.dedlineTime = [[NSDate date] dateByAddingTimeInterval:3 * 60 * 60];
+    timer = [NSTimer timerWithTimeInterval:TimeRefreshInterval target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:[[NSRunLoop currentRunLoop] currentMode]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -133,6 +153,9 @@
 -(void) createPaperViews{    
 	//init bookmark button items
 	[self setupBookmarkIcons];
+    
+    [pageSelector initPage:1];
+    self.pageLabel.text = [NSString stringWithFormat:@"%d/%d", pageSelector.currentPage, pageSelector.totalPage];
 	
 	[self createGestureRecognizers:scrollerViewController.view];
 	
@@ -148,10 +171,23 @@
 	pageLabel.hidden = NO;
 	forwardButton.hidden = NO;
 	backwardButton.hidden = NO;
-    
-    [pageSelector initPage:1];
 	
 	[self layoutSnapViewThread];
+}
+
+- (void)layoutSnapViewThread{
+	NSAutoreleasePool *pool =[[NSAutoreleasePool alloc] init];
+	if (!snapViewController.view.superview) {
+		UIView *view = snapViewController.view;
+		[self.bottomBar addSubview:view];
+		
+		snapViewController.view.frame = CGRectMake(0, 0, self.bottomBar.frame.size.width, self.bottomBar.frame.size.height);
+		snapViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+	}else {
+		[snapViewController.view setNeedsDisplay];
+	}
+	
+	[pool drain];
 }
 
 - (void)setupBookmarkIcons{
@@ -246,4 +282,84 @@
 	self.bookmarkItem = buttonItem;
 }
 
+#pragma mark -
+#pragma mark Gesture Recognizers
+- (void)createGestureRecognizers:(id)target {
+	UITapGestureRecognizer *tapper  = [[UITapGestureRecognizer alloc]
+									   initWithTarget:self action:@selector(handleSingleTap:)];
+	tapper.numberOfTapsRequired = 2;
+    //tapper.numberOfTouchesRequired = 2;
+    tapper.cancelsTouchesInView = NO;
+    tapper.delaysTouchesEnded = NO;
+    
+	[target addGestureRecognizer:tapper];
+	[tapper release];
+    
+	gestureRecognizer = tapper;
+}
+
+
+- (IBAction)handleSingleTap:(UIGestureRecognizer *)sender{	
+	if (self.topBar.hidden) {
+		self.topBar.hidden = NO;
+	}
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.3];
+	
+	[self.view bringSubviewToFront:self.topBar];
+	[self.view bringSubviewToFront:self.bottomBar];
+	[self.view bringSubviewToFront:self.controlPanel];
+	if (self.topBar.frame.origin.y < 0) {
+		self.topBar.alpha = 0.9;
+		self.bottomBar.alpha = 0.9;
+		CGRect frame = self.controlPanel.frame;
+		frame.origin.x -= frame.size.width;
+		self.controlPanel.frame = frame;
+		frame = self.topBar.frame;
+		frame.origin.y += frame.size.height;
+		self.topBar.frame = frame;
+		frame = self.bottomBar.frame;
+		frame.origin.y -= frame.size.height;
+		//frame.origin.y -= 10;
+		self.bottomBar.frame = frame;
+        
+        frame = self.pageLabel.frame;
+        frame.origin.y += 44;
+        self.pageLabel.frame = frame;
+	}else {
+		self.topBar.alpha = 0;
+		self.bottomBar.alpha = 0;
+		CGRect frame = self.controlPanel.frame;
+		frame.origin.x += frame.size.width;
+		self.controlPanel.frame = frame;
+		self.controlPanel.frame = frame;
+		frame = self.topBar.frame;
+		frame.origin.y -= frame.size.height;
+		self.topBar.frame = frame;
+		frame = self.bottomBar.frame;
+		frame.origin.y += frame.size.height;
+		//frame.origin.y += 10;
+		self.bottomBar.frame = frame;
+        
+        frame = self.pageLabel.frame;
+        frame.origin.y -= 44;
+        self.pageLabel.frame = frame;
+	}
+    
+	[UIView commitAnimations];
+}
+
+- (IBAction)submit:(id)sender {
+    
+}
+
+- (void)updateTime:(NSTimer*)theTimer{
+    NSDate *date = [NSDate date];
+    NSUInteger flags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:flags fromDate:date toDate:self.dedlineTime options:0];
+    NSString *titleString = [NSString stringWithFormat:@"%d:%d:%d", [components hour], [components minute], [components second]];
+    self.timeItem.title = titleString;
+}
 @end

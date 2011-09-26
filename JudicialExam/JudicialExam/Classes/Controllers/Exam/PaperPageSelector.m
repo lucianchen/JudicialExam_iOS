@@ -34,8 +34,9 @@
         shouldNotify = YES;
     }
     
+    currentPage = page;
     if (shouldNotify) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPageChanged object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NotificationPageChanged object:self];
     }
 }
 
@@ -43,7 +44,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:observer selector:selector name:NotificationPageChanged object:self];
 }
 
-- (void)removePageObserver:(NSObject *)observer selector:(SEL)selector{
+- (void)removePageObserver:(NSObject *)observer{
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:NotificationPageChanged object:self];
 }
 

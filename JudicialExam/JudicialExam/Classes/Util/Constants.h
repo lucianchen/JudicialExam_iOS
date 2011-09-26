@@ -10,6 +10,8 @@
 #define EntityNameQuestion @"Question"
 #define EntityNameOption @"Option"
 #define EntityNamePaper @"Paper"
+#define EntityNameRecord @"Record"
+#define EntityNameAnswer @"Answer"
 
 #define PaperYearStart (2002)
 #define PaperYearEnd (2010)

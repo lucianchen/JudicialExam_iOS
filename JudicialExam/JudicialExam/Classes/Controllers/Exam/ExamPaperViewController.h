@@ -26,6 +26,7 @@
     
 	UIBarButtonItem *bookmarkItem;
 	UIBarButtonItem *bookmarkItemReplacement;
+    UIBarButtonItem *timeItem;
 	UIBarButtonItem *bookmarkItemPlain;
     UIBarButtonItem *answerItem;
     
@@ -33,6 +34,8 @@
     PageSnapViewController *snapViewController;
     
     PaperPageSelector *pageSelector;
+    NSTimer *timer;
+    NSDate *dedlineTime;
 }
 
 @property(nonatomic, retain) Paper *paper;
@@ -49,7 +52,9 @@
 @property(nonatomic, retain) IBOutlet UIBarButtonItem *bookmarkItem;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem *bookmarkItemPlain;
 @property(nonatomic, retain) IBOutlet UIBarButtonItem *bookmarkItemReplacement;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *timeItem;
 
 @property(nonatomic, assign) UIGestureRecognizer* gestureRecognizer;
 
+- (IBAction)submit:(id)sender;
 @end

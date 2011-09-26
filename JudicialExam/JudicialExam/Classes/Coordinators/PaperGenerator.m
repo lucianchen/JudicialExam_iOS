@@ -60,6 +60,8 @@ void shuffle(NSMutableArray* array) {
         
         if ([papers count]) {
             retval = [papers objectAtIndex:0];
+            NSSet *questions = retval.questions;
+            NSLog(@"%d", [questions count]);
         }
     }else {
         NSEntityDescription *entity = [NSEntityDescription entityForName:EntityNameQuestion 
@@ -77,8 +79,6 @@ void shuffle(NSMutableArray* array) {
             predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"paperType", settings.paperType];
         }else if (settings.year > 0) {
             predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"year", settings.year];
-        }else {
-            predicate = [NSPredicate predicateWithFormat:@"%K == %d AND %K == %d", @"year", settings.year, @"paperType", settings.paperType];
         }
         
         if (predicate) {
@@ -87,6 +87,7 @@ void shuffle(NSMutableArray* array) {
         
         NSArray *allQuestions = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
         
+        Paper *paper = (Paper*)[NSEntityDescription insertNewObjectForEntityForName:EntityNamePaper inManagedObjectContext:managedObjectContext];
         for (QuestionType type = QuestionTypeSingle; type <= QuestionTypeUndefined; ++type) {
             predicate = [NSPredicate predicateWithFormat:@"%K == %d", @"optionType", type];
             NSMutableArray *questions = [NSMutableArray arrayWithArray:[allQuestions filteredArrayUsingPredicate:predicate]];
@@ -111,7 +112,6 @@ void shuffle(NSMutableArray* array) {
             NSArray *chosenArray = [questions objectsAtIndexes:indexSet];
             NSSet *questionSet = [NSSet setWithArray:chosenArray];
             
-            Paper *paper = (Paper*)[NSEntityDescription insertNewObjectForEntityForName:EntityNamePaper inManagedObjectContext:managedObjectContext];
             paper.paperType = [NSNumber numberWithInt:settings.paperType];
             paper.isOriginal = [NSNumber numberWithBool:NO];
             [paper addQuestions:questionSet];

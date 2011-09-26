@@ -7,25 +7,39 @@
 //
 
 #import "PaperQuestionView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PaperQuestionView
+@synthesize backView;
+@synthesize index;
+@synthesize tableView;
+@synthesize questionTypeButton;
+@synthesize questionTypeLabel;
+
+- (void)awakeFromNib{
+    self.tableView.backgroundColor = [UIColor clearColor];
+}
+
+- (void)dealloc{
+    [tableView release];
+    
+    [questionTypeButton release];
+    [questionTypeLabel release];
+    [backView release];
+    [super dealloc];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    
 }
-*/
 
 @end

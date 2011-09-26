@@ -10,6 +10,9 @@
 #import "ExamPreConfigViewController.h"
 #import "PaperGenerator.h"
 #import "Util.h"
+#import "ExamPaperViewController.h"
+#import "Record.h"
+#import "Constants.h"
 
 @implementation ExaminationViewController
 
@@ -72,13 +75,26 @@
         Paper *paper = [paperGenerator paperFromSettings:settings];
         
         NSManagedObjectContext *context = [Util managedObjectContext];
+        
+        Record *record = (Record*)[NSEntityDescription insertNewObjectForEntityForName:EntityNameRecord inManagedObjectContext:context];
+        
+        if (record) {
+            record.paper = paper;
+        }
+        
         NSError *error = nil;
         if (![context save:&error]) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        
+        ExamPaperViewController *controller = [[[ExamPaperViewController alloc] init] autorelease];
+        controller.paper = paper;
+        [self.navigationController pushViewController:controller animated:YES];
     }
     
     [self dismissModalViewControllerAnimated:YES];
 }
+
+
 @end

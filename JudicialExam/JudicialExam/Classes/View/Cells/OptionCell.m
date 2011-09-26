@@ -12,6 +12,7 @@
 @synthesize checkStatusView;
 @synthesize indexView;
 @synthesize textView;
+@synthesize checkButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,6 +34,7 @@
     [checkStatusView release];
     [indexView release];
     [textView release];
+    [checkButton release];
     [super dealloc];
 }
 @end

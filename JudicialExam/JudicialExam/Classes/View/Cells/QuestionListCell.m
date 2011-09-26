@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation QuestionListCell
+@synthesize idLabel;
 @synthesize questionText;
 @synthesize paperTypeLabel;
 @synthesize yearLabel;
@@ -44,6 +45,7 @@
     [yearLabel release];
     [paperTypeLabel release];
     [questionIdLabel release];
+    [idLabel release];
     [super dealloc];
 }
 @end

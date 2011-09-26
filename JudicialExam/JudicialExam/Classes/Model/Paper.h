@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * year;
 @property (nonatomic, retain) NSNumber * isOriginal;
 @property (nonatomic, retain) NSSet *questions;
+@property (nonatomic, readonly) NSArray *sortedQuestions;
 @end
 
 @interface Paper (CoreDataGeneratedAccessors)

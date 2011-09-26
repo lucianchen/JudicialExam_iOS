@@ -122,7 +122,8 @@
 
 - (IBAction)cancel:(id)sender {
     if ([self.delegate respondsToSelector:@selector(didEndConfiguration:settings:)]) {
-        [self.delegate didEndConfiguration:NO settings:self.settings];
+        ExamPreSettings null_settings;
+        [self.delegate didEndConfiguration:NO settings:null_settings];
     }
 }
 

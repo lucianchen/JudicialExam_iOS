@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "OptionCell.h"
+#import "QuestionListCell.h"
 #import "Option.h"
+#import "Question.h"
 
 @interface CellUtil : NSObject
 
 +(void)configureCell:(OptionCell*)cell forOption:(Option*)option;
++(void)configureCell:(QuestionListCell*)cell forQuestion:(Question*)question;
 
 @end

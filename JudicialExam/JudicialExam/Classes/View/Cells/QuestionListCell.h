@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface QuestionListCell : UITableViewCell{
-
     UITextView *questionText;
     UILabel *paperTypeLabel;
     UILabel *yearLabel;
     UILabel *questionIdLabel;
+    UILabel *idLabel;
 }
+@property (nonatomic, retain) IBOutlet UILabel *idLabel;
 
 @property (nonatomic, retain) IBOutlet UITextView *questionText;
 @property (nonatomic, retain) IBOutlet UILabel *paperTypeLabel;

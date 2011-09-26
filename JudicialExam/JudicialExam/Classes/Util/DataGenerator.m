@@ -161,6 +161,9 @@
             }
         }
     
+        NSSet *questionsInserted = paper.questions;
+        NSLog(@"Paper of year:%d created, type: %d, num:%d", year, paperType, [questionsInserted count]);
+        
     }
 }
 
