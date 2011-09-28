@@ -30,11 +30,13 @@
 - (PaperQuestionView*)currentView;
 
 - (void)pageSelectionDidChange:(NSNotification*)notification;
-- (Question*)questionByPage:(NSInteger)page;
 - (NSString*)typeStringWithType:(QuestionType)type;
 - (NSString*)typeDescStringWithType:(QuestionType)type;
 - (NSMutableArray*)optionArrayForPage:(NSInteger)page;
 - (QuestionType)questionTypeByQuestionId:(NSInteger)Id;
+
+- (void)layoutPagesByPageSelector;
+- (void)layoutPagesWithFistIndex:(NSInteger)firstNeededPageIndex lastIndex:(NSInteger)lastNeededPageIndex;
 
 @end
 
@@ -44,6 +46,7 @@
 @synthesize paper;
 @synthesize tmpCell;
 @synthesize tmpQuestionView;
+@synthesize optionDict;
 
 - (void)dealloc{
     [pageSelector release];
@@ -90,13 +93,18 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
     pagingScrollView.frame = pagingScrollViewFrame;
     pagingScrollView.contentSize = CGSizeMake(pagingScrollViewFrame.size.width * pageSelector.totalPage,
                                               pagingScrollViewFrame.size.height);
-    [self layoutPages];
     
-    [super viewWillAppear:animated];
+    [self layoutPagesByPageSelector];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -126,6 +134,14 @@
 	[self layoutPages];
 }
 
+- (void)clear{
+    NSArray *pages = [NSArray arrayWithArray:visiblePages];
+	for (PaperQuestionView *page in pages) {
+		[visiblePages removeObject:page];
+        [page removeFromSuperview];
+	}
+}
+
 - (void)setPageSelector:(PaperPageSelector *)selector{
     [pageSelector autorelease];
     pageSelector = [selector retain];
@@ -142,33 +158,36 @@
         [pageSelector removePageObserver:self];
 		pageSelector.currentPage = curIndex + 1;
         [pageSelector addPageObserver:self selector:@selector(pageSelectionDidChange:)];
-        [self layoutPages];
 	}
+    
+    [self layoutPages];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-	
-	NSInteger curIndex = pagingScrollView.contentOffset.x / CGRectGetWidth(pagingScrollView.bounds);
-	
-	int firstNeededPageIndex = curIndex - BUFFER_PAGE_SIZE > 0 ? (curIndex - BUFFER_PAGE_SIZE) : 0;
-	int lastNeededPageIndex = curIndex + BUFFER_PAGE_SIZE >= pageSelector.totalPage - 1 ? pageSelector.totalPage - 1 : (curIndex + BUFFER_PAGE_SIZE);
-	
-	if ((curIndex + 1 != pageSelector.currentPage) && 
-		((firstNeededPageIndex != firstNeededIndex) || (lastNeededPageIndex != lastNeededIndex))) {
-		[self layoutPages];
-	}
-	
-	firstNeededIndex = firstNeededPageIndex;
-	lastNeededIndex = lastNeededPageIndex;
+    NSInteger curIndex = pagingScrollView.contentOffset.x / CGRectGetWidth(pagingScrollView.bounds);
+    
+    int firstNeededPageIndex = curIndex - BUFFER_PAGE_SIZE > 0 ? (curIndex - BUFFER_PAGE_SIZE) : 0;
+    int lastNeededPageIndex = curIndex + BUFFER_PAGE_SIZE >= pageSelector.totalPage - 1 ? pageSelector.totalPage - 1 : (curIndex + BUFFER_PAGE_SIZE);
+    
+    if ((curIndex + 1 != pageSelector.currentPage) && 
+        ((firstNeededPageIndex != firstNeededIndex) || (lastNeededPageIndex != lastNeededIndex))) {
+        
+        //        [pageSelector removePageObserver:self];
+        //		pageSelector.currentPage = curIndex + 1;
+        //        [pageSelector addPageObserver:self selector:@selector(pageSelectionDidChange:)];
+        
+        [self layoutPages];
+    }
+    
+    firstNeededIndex = firstNeededPageIndex;
+    lastNeededIndex = lastNeededPageIndex;
 }
 
 - (void)pageSelectionDidChange:(NSNotification*)notification{
-    CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
-    CGPoint offset = pagingScrollView.contentOffset;
-    offset.x = (pageSelector.currentPage - 1) * pagingScrollViewFrame.size.width;
+    //
+    [self layoutPagesByPageSelector];
     
-    [pagingScrollView setContentOffset:offset animated:YES];
-    [self layoutPages];
+    [self performSelector:@selector(layoutPages) withObject:nil afterDelay:0.3];
 }
 
 - (void)layoutPages{
@@ -177,13 +196,34 @@
 	NSInteger curIndex = pagingScrollView.contentOffset.x / CGRectGetWidth(visibleBounds);
     NSInteger pageNum = pageSelector.totalPage;
 	
-	int firstNeededPageIndex = curIndex > 0 ? (curIndex - BUFFER_PAGE_SIZE) : 0;
-	int lastNeededPageIndex  = curIndex >= pageNum ? pageNum : (curIndex + BUFFER_PAGE_SIZE);
+	int firstNeededPageIndex = curIndex - BUFFER_PAGE_SIZE > 0 ? (curIndex - BUFFER_PAGE_SIZE) : 0;
+	int lastNeededPageIndex  = curIndex + BUFFER_PAGE_SIZE >= pageNum - 1 ? pageNum - 1 : (curIndex + BUFFER_PAGE_SIZE);
 
 	firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
 	lastNeededPageIndex  = MIN(lastNeededPageIndex, pageNum - 1);
     
-	// Recycle no-longer-visible pages 
+	
+	[self layoutPagesWithFistIndex:firstNeededPageIndex lastIndex:lastNeededPageIndex];
+}
+
+- (void)layoutPagesByPageSelector{
+    CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
+    CGPoint offset = pagingScrollView.contentOffset;
+    offset.x = (pageSelector.currentPage - 1) * pagingScrollViewFrame.size.width;
+    
+    //CGRect frame = [self frameForPageAtIndex:pageSelector.currentPage - 1];
+    //[pagingScrollView scrollRectToVisible:frame animated:YES];
+    [pagingScrollView setContentOffset:offset animated:YES];
+    
+    NSInteger pageNum = pageSelector.totalPage;
+    NSInteger curIndex = pageSelector.currentPage - 1;
+    int firstNeededPageIndex = curIndex - BUFFER_PAGE_SIZE > 0 ? (curIndex - BUFFER_PAGE_SIZE) : 0;
+	int lastNeededPageIndex  = curIndex + BUFFER_PAGE_SIZE >= pageNum - 1 ? pageNum - 1 : (curIndex + BUFFER_PAGE_SIZE);
+    [self layoutPagesWithFistIndex:firstNeededPageIndex lastIndex:lastNeededPageIndex];
+}
+
+- (void)layoutPagesWithFistIndex:(NSInteger)firstNeededPageIndex lastIndex:(NSInteger)lastNeededPageIndex{
+    // Recycle no-longer-visible pages 
     
     NSArray *pages = [NSArray arrayWithArray:visiblePages];
 	for (PaperQuestionView *page in pages) {
@@ -210,7 +250,9 @@
                 page.tableView.backgroundColor = [UIColor clearColor];
                 
 				hasRecycledPage = NO;
-			}
+			}else {
+                NSLog(@"");
+            }
             
             page.tableView.tag = index;
             Question *question = [self questionByPage:page.tableView.tag + 1];
@@ -226,7 +268,6 @@
 			[page release];
 		}
 	}
-	
 }
 
 - (PaperQuestionView *)anyRecycledPage
@@ -333,8 +374,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	NSInteger retval = 0;
     
-    Question *question = [self questionByPage:tableView.tag + 1];
-    //NSLog(@"Question: %@-%@-%@ Tableview tag: %d", question.year, question.paperType, question.Id, tableView.tag);
+    //Question *question = [self questionByPage:tableView.tag + 1];
+    //NSLog(@"Question: %@-%@-%@ Tableview tag: %d", question.year, question.paperType, question.questionId, tableView.tag);
     
     if (0 == section) {
         retval = 1;
@@ -374,6 +415,7 @@
         NSMutableArray *optionArray = [self optionArrayForPage:tableView.tag + 1];
         BOOL hasOption = [optionArray containsObject:[NSNumber numberWithInt:indexPath.row]];
         ((OptionCell*)cell).checkButton.selected = hasOption;
+        ((OptionCell*)cell).checkButton.userInteractionEnabled = ![self.record.completed boolValue];
     }
     
     return cell;
@@ -407,7 +449,17 @@
     return retval;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (![self.record.completed boolValue] && indexPath.section == 1) {
+        return indexPath;
+    }
+    
+    return nil;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     if (indexPath.section == 1) {
         NSInteger page = tableView.tag + 1;
         NSInteger selectedOptionIndex = indexPath.row;

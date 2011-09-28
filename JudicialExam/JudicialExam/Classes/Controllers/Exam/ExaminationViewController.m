@@ -14,7 +14,14 @@
 #import "Record.h"
 #import "Constants.h"
 
+#define AlertViewTitleStartTest @"开始测试"
+
+@interface ExaminationViewController()
+- (void)updateUI;
+@end
+
 @implementation ExaminationViewController
+@synthesize continueButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +34,7 @@
 
 - (void)dealloc
 {
+    [continueButton release];
     [super dealloc];
 }
 
@@ -48,9 +56,27 @@
 
 - (void)viewDidUnload
 {
+    [self setContinueButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self updateUI];
+}
+
+- (void)updateUI{
+    BOOL shouldShowContinueButton = NO;
+    Record *lastRecord = [Util lastRecord];
+    
+    if (lastRecord && !lastRecord.completed) {
+        shouldShowContinueButton = YES;
+    }
+    
+    self.continueButton.hidden = !shouldShowContinueButton;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -60,13 +86,60 @@
 }
 
 - (IBAction)startTest:(id)sender {
-    ExamPreConfigViewController *controller = [[[ExamPreConfigViewController alloc] init] autorelease];
-    controller.delegate = (NSObject<ExamPreConfigViewControllerDelegate>*)self;
+    BOOL shouldAlert = NO;
+    Record *lastRecord = [Util lastRecord];
     
-    controller.modalPresentationStyle = UIModalPresentationFormSheet;
-    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    if (lastRecord && !lastRecord.completed) {
+        shouldAlert = YES;
+    }
     
-    [self presentModalViewController:controller animated:YES];
+    if (shouldAlert) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:AlertViewTitleStartTest message:@"开始新的测验会删除上次保存的进度噢~" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"开始新测试", nil];
+        [alertView show];
+        [alertView autorelease];
+    }else {
+        ExamPreConfigViewController *controller = [[[ExamPreConfigViewController alloc] init] autorelease];
+        controller.delegate = (NSObject<ExamPreConfigViewControllerDelegate>*)self;
+        
+        controller.modalPresentationStyle = UIModalPresentationFormSheet;
+        controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        
+        [self presentModalViewController:controller animated:YES];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if ([alertView.title isEqualToString:AlertViewTitleStartTest]) {
+        if (buttonIndex != 0) {
+            NSManagedObjectContext *context = [Util managedObjectContext];
+            
+            if (buttonIndex == 1) {
+                //delete record
+                Record *lastRecord = [Util lastRecord];
+                [context deleteObject:lastRecord];
+            }
+            
+            NSError *error = nil;
+            if (![context save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
+            
+            [self startTest:nil];
+            [self updateUI];
+        }
+    }
+}
+
+- (IBAction)continueTest:(id)sender {
+    Record *record = [Util lastRecord];
+    
+    if (record && !record.completed) {
+        ExamPaperViewController *controller = [[[ExamPaperViewController alloc] init] autorelease];
+        controller.record = record;
+        controller.paper = record.paper;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)didEndConfiguration:(BOOL)shouldStart settings:(ExamPreSettings)settings{
@@ -75,12 +148,6 @@
         Paper *paper = [paperGenerator paperFromSettings:settings];
         
         NSManagedObjectContext *context = [Util managedObjectContext];
-        
-        Record *record = (Record*)[NSEntityDescription insertNewObjectForEntityForName:EntityNameRecord inManagedObjectContext:context];
-        
-        if (record) {
-            record.paper = paper;
-        }
         
         NSError *error = nil;
         if (![context save:&error]) {

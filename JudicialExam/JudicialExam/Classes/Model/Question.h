@@ -2,7 +2,7 @@
 //  Question.h
 //  JudicialExam
 //
-//  Created by Chen, Liang on 9/23/11.
+//  Created by Chen, Liang on 9/28/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * subjectiveAnswer;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * year;
+@property (nonatomic, retain) NSNumber * questionId;
 @property (nonatomic, retain) NSSet *answers;
 @property (nonatomic, retain) NSSet *options;
 @end

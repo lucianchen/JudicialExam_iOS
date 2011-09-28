@@ -35,6 +35,9 @@
 @property(nonatomic, assign) Paper *paper;
 @property(nonatomic, assign) Record *record;
 @property(nonatomic, assign) UITableViewCell *tmpCell;
-@property(nonatomic, readonly) NSMutableDictionary *optionDict;
+@property(nonatomic, retain) NSMutableDictionary *optionDict;
+
+- (Question*)questionByPage:(NSInteger)page;
+- (void)clear;
 
 @end

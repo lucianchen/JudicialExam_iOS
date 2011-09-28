@@ -256,7 +256,7 @@
     listCell.questionText.text = question.title;
     listCell.yearLabel.text = [NSString stringWithFormat:@"%@", question.year];
     listCell.paperTypeLabel.text = [NSString stringWithFormat:@"卷%@", question.paperType];
-    listCell.questionIdLabel.text = [NSString stringWithFormat:@"%@.", question.Id];
+    listCell.questionIdLabel.text = [NSString stringWithFormat:@"%@.", question.questionId];
 }
 
 

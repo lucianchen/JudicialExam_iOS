@@ -167,13 +167,13 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">button_blue.png</string>
+									<string key="NSResourceName">button_blue_small.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="533533568">
 								<reference key="NSNextResponder" ref="203868723"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 27}, {55, 21}}</string>
+								<string key="NSFrame">{{14, 27}, {55, 21}}</string>
 								<reference key="NSSuperview" ref="203868723"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="214996116"/>
@@ -186,14 +186,19 @@
 								<string key="IBUIText">99</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">17</double>
+									<double key="NSSize">19</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">2</int>
+									<bytes key="NSRGB">MC44MTE3NjQ3NzY3IDAuOTQ5MDE5NjcwNSAxAA</bytes>
+								</object>
+								<nil key="IBUIHighlightedColor"/>
+								<object class="NSColor" key="IBUIShadowColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
-								<nil key="IBUIHighlightedColor"/>
+								<string key="IBUIShadowOffset">{1, 1}</string>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
@@ -342,6 +347,7 @@
 						<int key="objectID">14</int>
 						<reference key="object" ref="533533568"/>
 						<reference key="parent" ref="996107556"/>
+						<string key="objectName">Label - 99</string>
 					</object>
 				</object>
 			</object>
@@ -560,8 +566,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">button_blue.png</string>
-			<string key="NS.object.0">{300, 300}</string>
+			<string key="NS.key.0">button_blue_small.png</string>
+			<string key="NS.object.0">{60, 60}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">534</string>
 	</data>

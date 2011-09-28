@@ -2,7 +2,7 @@
 //  Record.m
 //  JudicialExam
 //
-//  Created by Chen, Liang on 9/23/11.
+//  Created by Chen, Liang on 9/26/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,6 +14,9 @@
 @implementation Record
 @dynamic date;
 @dynamic Id;
+@dynamic completed;
+@dynamic leftTime;
+@dynamic lastPage;
 @dynamic answers;
 @dynamic paper;
 

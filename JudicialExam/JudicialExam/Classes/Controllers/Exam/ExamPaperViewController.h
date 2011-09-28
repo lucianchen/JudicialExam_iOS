@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Paper.h"
+#import "Record.h"
 #import "PaperScrollViewController.h"
 #import "PageSnapViewController.h"
 #import "PaperPageSelector.h"
 
 @interface ExamPaperViewController : UIViewController{
     Paper *paper;
+    Record *record;
     
     float maxWidth;
 	UILabel *pageLabel;
@@ -36,9 +38,14 @@
     PaperPageSelector *pageSelector;
     NSTimer *timer;
     NSDate *dedlineTime;
+    UIBarButtonItem *submitItem;
+    
+    BOOL initialized;
 }
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *submitItem;
 @property(nonatomic, retain) Paper *paper;
+@property(nonatomic, retain) Record *record;
 
 @property(nonatomic, retain) IBOutlet UILabel *pageLabel;
 @property(nonatomic, retain) IBOutlet UIButton *backwardButton;
@@ -57,4 +64,5 @@
 @property(nonatomic, assign) UIGestureRecognizer* gestureRecognizer;
 
 - (IBAction)submit:(id)sender;
+- (IBAction)returnToParent:(id)sender;
 @end

@@ -114,6 +114,7 @@ void shuffle(NSMutableArray* array) {
             
             paper.paperType = [NSNumber numberWithInt:settings.paperType];
             paper.isOriginal = [NSNumber numberWithBool:NO];
+            paper.distributionType = [NSNumber numberWithInt:ValueDistributionTypeTwo];
             [paper addQuestions:questionSet];
             
             retval = paper;

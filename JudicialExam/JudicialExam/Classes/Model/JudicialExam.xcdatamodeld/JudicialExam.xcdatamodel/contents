@@ -7,11 +7,18 @@
         <relationship name="paper" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" indexed="YES"/>
         <relationship name="question" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Question" indexed="YES"/>
     </entity>
+    <entity name="Bookmark" representedClassName="Bookmark">
+        <attribute name="addDate" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="itemId" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="itemType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+    </entity>
     <entity name="Option" representedClassName="Option">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="Id" attributeType="Integer 32" defaultValueString="0" indexed="YES"/>
     </entity>
     <entity name="Paper" representedClassName="Paper">
+        <attribute name="distributionType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="fullMark" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="Id" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="isOriginal" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="paperType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
@@ -23,6 +30,7 @@
         <attribute name="Id" attributeType="Integer 32" defaultValueString="0" indexed="YES"/>
         <attribute name="optionType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="paperType" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="questionId" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="subjectiveAnswer" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="year" attributeType="Integer 32" defaultValueString="0"/>
@@ -30,16 +38,20 @@
         <relationship name="options" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Option" indexed="YES"/>
     </entity>
     <entity name="Record" representedClassName="Record">
+        <attribute name="completed" optional="YES" attributeType="Integer 32"/>
         <attribute name="date" optional="YES" attributeType="Date"/>
         <attribute name="Id" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="lastPage" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="leftTime" optional="YES" attributeType="Double" defaultValueString="0.0"/>
         <relationship name="answers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Answer"/>
         <relationship name="paper" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paper" indexed="YES"/>
     </entity>
     <elements>
         <element name="Answer" positionX="-414" positionY="-1809" width="128" height="120"/>
         <element name="Option" positionX="-288" positionY="-1704" width="128" height="75"/>
-        <element name="Paper" positionX="-585" positionY="-1899" width="128" height="120"/>
-        <element name="Question" positionX="-621" positionY="-1713" width="128" height="180"/>
-        <element name="Record" positionX="-549" positionY="-2073" width="128" height="105"/>
+        <element name="Paper" positionX="-585" positionY="-1899" width="128" height="150"/>
+        <element name="Question" positionX="-621" positionY="-1713" width="128" height="195"/>
+        <element name="Record" positionX="-549" positionY="-2073" width="128" height="150"/>
+        <element name="Bookmark" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>

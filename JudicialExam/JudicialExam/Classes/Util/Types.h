@@ -16,11 +16,21 @@ typedef enum {
 }QuestionType;
 
 typedef enum {
+    BookmarkTypeQuestion = 0,
+    BookmarkTypeOther
+}BookmarkType;
+
+typedef enum {
     PaperTypeOne = 1,
     PaperTypeTwo,
     PaperTypeThree,
     PaperTypeFour
 }PaperType;
+
+typedef enum {
+    ValueDistributionTypeOne = 1,
+    ValueDistributionTypeTwo = 2
+}ValueDistributionType;
 
 
 #define ExamPaperTypeAll (0)

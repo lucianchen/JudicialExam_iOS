@@ -10,8 +10,11 @@
 
 
 @interface ExaminationViewController : UIViewController {
-    
+    UIButton *continueButton;
 }
+@property (nonatomic, retain) IBOutlet UIButton *continueButton;
+
 - (IBAction)startTest:(id)sender;
+- (IBAction)continueTest:(id)sender;
 
 @end

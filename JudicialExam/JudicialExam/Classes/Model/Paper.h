@@ -2,7 +2,7 @@
 //  Paper.h
 //  JudicialExam
 //
-//  Created by Chen, Liang on 9/23/11.
+//  Created by Chen, Liang on 9/27/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -15,11 +15,15 @@
 @private
 }
 @property (nonatomic, retain) NSNumber * Id;
+@property (nonatomic, retain) NSNumber * isOriginal;
 @property (nonatomic, retain) NSNumber * paperType;
 @property (nonatomic, retain) NSNumber * year;
-@property (nonatomic, retain) NSNumber * isOriginal;
+@property (nonatomic, retain) NSNumber * distributionType;
+@property (nonatomic, retain) NSNumber * fullMark;
 @property (nonatomic, retain) NSSet *questions;
+
 @property (nonatomic, readonly) NSArray *sortedQuestions;
+
 @end
 
 @interface Paper (CoreDataGeneratedAccessors)

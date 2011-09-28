@@ -85,6 +85,9 @@
     paper.year = [NSNumber numberWithInt:year];
     paper.isOriginal = [NSNumber numberWithBool:YES];
     
+    ValueDistributionType distributionType = (year >= 2004) ? ValueDistributionTypeTwo : ValueDistributionTypeOne;
+    paper.distributionType = [NSNumber numberWithInt:distributionType];
+    
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         NSString *paperString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
         
@@ -124,9 +127,11 @@
                 question.title = entityQuestion.title;
                 question.analysis = entityQuestion.analysis;
                 question.year = [NSNumber numberWithInt:year];
-                question.Id = [NSNumber numberWithInt:questionId];
+                question.questionId = [NSNumber numberWithInt:questionId];
                 question.paperType = [NSNumber numberWithInt:paperType];
                 
+                NSInteger idNumber = 100000 * year + 1000 * paperType + questionId;
+                question.Id = [NSNumber numberWithInt:idNumber];
                 
                 question.optionType = [NSNumber numberWithInt:
                                        [self questionTypeFromQuestionId:questionId year:year]
@@ -165,6 +170,7 @@
         NSLog(@"Paper of year:%d created, type: %d, num:%d", year, paperType, [questionsInserted count]);
         
     }
+    
 }
 
 - (QuestionType)questionTypeFromQuestionId:(NSInteger)questionId year:(NSInteger)year{

@@ -2,7 +2,7 @@
 //  Paper.m
 //  JudicialExam
 //
-//  Created by Chen, Liang on 9/23/11.
+//  Created by Chen, Liang on 9/27/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,9 +12,11 @@
 
 @implementation Paper
 @dynamic Id;
+@dynamic isOriginal;
 @dynamic paperType;
 @dynamic year;
-@dynamic isOriginal;
+@dynamic distributionType;
+@dynamic fullMark;
 @dynamic questions;
 
 - (NSArray*)sortedQuestions{

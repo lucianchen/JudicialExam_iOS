@@ -62,7 +62,7 @@
 	self.thumbPageLabel.layer.masksToBounds = YES;
 	
 	self.thumbnailView.hidden = YES;
-	self.thumbPageLabel.text = [NSString stringWithFormat:@"%d/%d", 1, pageSelector.totalPage];
+	self.thumbPageLabel.text = [NSString stringWithFormat:@"%d", 1];;
 }
 
 - (void)viewDidUnload
@@ -89,7 +89,7 @@
     NSInteger totalPageNum = pageSelector.totalPage;
     NSInteger page = pageSelector.currentPage;
     
-    self.thumbPageLabel.text = [NSString stringWithFormat:@"%d/%d", pageSelector.currentPage, totalPageNum];
+    self.thumbPageLabel.text = [NSString stringWithFormat:@"%d",page];
     
     if (!pageSlider.touchInside && (totalPageNum > 1)) {
         CGFloat value = (float)(page - 1) / (float)(totalPageNum - 1);
@@ -111,15 +111,26 @@
 
 - (IBAction)sliderDidSlide:(id)sender{
 	self.thumbnailView.center = [self thumbnailViewCenter];
+    
+    NSInteger curPage = nearbyint(1 + self.pageSlider.value * (pageSelector.totalPage - 1));
+    self.thumbPageLabel.text = [NSString stringWithFormat:@"%d",curPage];
 }
 
 - (IBAction)sliderDidTouchDown{
-	//self.thumbnailView.hidden = NO;
-	//[self refreshThumbnail];
+	self.thumbPageLabel.hidden = NO;
+	
+    CALayer *layer = self.thumbPageLabel.layer;
+    layer.cornerRadius = 4;
+	layer.masksToBounds = YES;
+	layer.borderColor = [[UIColor grayColor] CGColor];
+	layer.borderWidth = 0.5;
+	layer.shadowColor = [[UIColor blackColor] CGColor];
+	layer.shadowOpacity = 0.5;
+	layer.shadowOffset = CGSizeMake(5, 5);
 }
 
 - (IBAction)sliderDidTouchUp{
-	//self.thumbnailView.hidden = YES;
+	self.thumbPageLabel.hidden = YES;
     
     NSInteger curPage = nearbyint(1 + self.pageSlider.value * (pageSelector.totalPage - 1));
 	
@@ -155,7 +166,7 @@
     thumbPageView = nil;
     thumbPageView = [[PaperQuestionView alloc] initWithFrame:frame];
     
-    [self setStyleForPageView:thumbPageView];
+    [self setStyleForPageView:self.thumbPageLabel];
     [self.thumbnailView addSubview:thumbPageView];
     [self.thumbnailView bringSubviewToFront:thumbPageLabel];
     

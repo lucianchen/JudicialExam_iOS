@@ -12,6 +12,7 @@
 #define EntityNamePaper @"Paper"
 #define EntityNameRecord @"Record"
 #define EntityNameAnswer @"Answer"
+#define EntityNameBookmark @"Bookmark"
 
 #define PaperYearStart (2002)
 #define PaperYearEnd (2010)
