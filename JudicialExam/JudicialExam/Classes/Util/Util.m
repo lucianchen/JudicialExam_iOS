@@ -153,4 +153,28 @@
     return retval;
 }
 
++ (NSArray*)questionsOfFirstPaper{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:EntityNameQuestion inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d AND %K == %d", @"year", 2002, @"paperType", PaperTypeOne];
+    [fetchRequest setPredicate:predicate];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    NSArray *retval = [[Util managedObjectContext] executeFetchRequest:fetchRequest error:nil];
+    
+    [fetchRequest release];
+    [sortDescriptor release];
+    [sortDescriptors release];
+    
+    return retval;
+}
+
 @end

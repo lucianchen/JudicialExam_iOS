@@ -21,4 +21,6 @@
 + (NSInteger)questionWeightById:(NSInteger)questionId valueType:(ValueDistributionType)type;
 + (NSRange)rangeOfQuestionsType:(QuestionType)questionType valueType:(ValueDistributionType)valType;
 
++ (NSArray*)questionsOfFirstPaper;
+
 @end

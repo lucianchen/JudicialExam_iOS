@@ -50,7 +50,7 @@ void shuffle(NSMutableArray* array) {
         [descriptor release];
         
         NSPredicate *predicate = nil;
-        predicate = [NSPredicate predicateWithFormat:@"%K == %d AND %K == %d", @"year", settings.year, @"paperType", settings.paperType];
+        predicate = [NSPredicate predicateWithFormat:@"%K == %d AND %K == %d AND %K == %d", @"year", settings.year, @"paperType", settings.paperType, @"isOriginal", YES];
         
         if (predicate) {
             [fetchRequest setPredicate:predicate];
@@ -62,6 +62,9 @@ void shuffle(NSMutableArray* array) {
             retval = [papers objectAtIndex:0];
             NSSet *questions = retval.questions;
             NSLog(@"%d", [questions count]);
+            
+            NSArray *ques = [Util questionsOfFirstPaper];
+            NSLog(@"%@", ques);
         }
     }else {
         NSEntityDescription *entity = [NSEntityDescription entityForName:EntityNameQuestion 
@@ -119,6 +122,7 @@ void shuffle(NSMutableArray* array) {
             
             retval = paper;
         } 
+        
     }
     
     [fetchRequest release];

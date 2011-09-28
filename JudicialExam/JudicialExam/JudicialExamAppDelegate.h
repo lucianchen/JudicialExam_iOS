@@ -13,6 +13,8 @@
     NSManagedObjectContext *managedObjectContext;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
     NSPersistentStore *persistentStore;
+    
+    NSFetchedResultsController *fetchedResultsController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

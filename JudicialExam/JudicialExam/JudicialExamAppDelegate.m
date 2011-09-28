@@ -7,6 +7,8 @@
 //
 
 #import "JudicialExamAppDelegate.h"
+#import "Constants.h"
+#import "Types.h"
 
 @interface JudicialExamAppDelegate()
 
@@ -27,7 +29,42 @@
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    if (fetchedResultsController == nil) {
+        // Create the fetch request for the entity.
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        // Edit the entity name as appropriate.
+        NSEntityDescription *entity = [NSEntityDescription entityForName:EntityNameQuestion inManagedObjectContext:self.managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %d AND %K == %d", @"year", 2002, @"paperType", PaperTypeOne];
+        [fetchRequest setPredicate:predicate];
+        
+        // Edit the sort key as appropriate.
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"Id" ascending:YES];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+        
+        [fetchRequest setSortDescriptors:sortDescriptors];
+        
+        // Edit the section name key path and cache name if appropriate.
+        // nil for section name key path means "no sections".
+        NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"nil"];
+        aFetchedResultsController.delegate = self;
+        fetchedResultsController = aFetchedResultsController;
+        
+        //[aFetchedResultsController release];
+        [fetchRequest release];
+        [sortDescriptor release];
+        [sortDescriptors release];
+        
+        [fetchedResultsController performFetch:nil];
+    }
+    
     return YES;
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
+    NSLog(@"Paper changed:%d", type);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -79,6 +116,8 @@
 	[managedObjectContext release];
     
     [persistentStore release];
+    
+    [fetchedResultsController release];
     
     [super dealloc];
 }
